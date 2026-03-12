@@ -1,0 +1,113 @@
+#ifndef _VARIABLE_H
+#define _VARIABLE_H
+
+#include "helper/type.h"
+
+///////////////////////////////////////////////////////////////////////////////
+// DMUX //
+//////////
+dmux_conf_t _dmux;
+void dmux_setup (dmux_conf_t dmux)
+{
+    _dmux = dmux;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// DMUX_CHILD //
+////////////////
+// LED //
+///////////////////////////////////////////////////////////////////////////////
+dmux_child_t _dmux_seg;
+dmux_child_t _dmux_rpm_ctrl;
+dmux_child_t _dmux_spd_ctrl;
+void dmux_led_seg_setup (dmux_child_t dmux_seg)
+{
+    _dmux_seg = dmux_seg;
+}
+void dmux_led_rpm_setup (dmux_child_t dmux_rpm_ctrl)
+{
+    _dmux_rpm_ctrl = dmux_rpm_ctrl;
+}
+void dmux_led_spd_setup (dmux_child_t dmux_spd_ctrl)
+{
+    _dmux_spd_ctrl = dmux_spd_ctrl;
+}
+///////////
+// MOTOR //
+///////////////////////////////////////////////////////////////////////////////
+dmux_child_t _dmux_motor;
+void dmux_motor_setup (dmux_child_t dmux_motor)
+{
+    _dmux_motor = dmux_motor;
+}
+///////////
+// STRIP //
+///////////////////////////////////////////////////////////////////////////////
+dmux_child_t _dmux_strip;
+void dmux_strip_setup (dmux_child_t dmux_strip)
+{
+    _dmux_strip = dmux_strip;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// MUX //
+//////////////
+// SELECTOR //
+///////////////////////////////////////////////////////////////////////////////
+mux_select_t _mux_select;
+void mux_setup (mux_select_t mux_select)
+{
+    _mux_select = mux_select;
+}
+///////////
+// POPUP //
+///////////////////////////////////////////////////////////////////////////////
+mux_popup_t _mux_popup;
+void popup_setup (mux_popup_t mux_popup)
+{
+    _mux_popup = mux_popup;
+}
+///////////
+// STRIP //
+///////////////////////////////////////////////////////////////////////////////
+mux_strip_t _mux_strip;
+void strip_setup (mux_strip_t mux_strip)
+{
+    _mux_strip = mux_strip;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// COUNTER PARAMETER //
+///////////////////////
+uint32_t _SPD_CONST = 0;
+uint32_t _RPM_CONST = 0;
+void spd_setup (uint8_t p1, uint8_t p2, uint8_t p3)
+{
+    _SPD_CONST = (p1 * p2 * 2 * 314 * 36 + p3 * 254 * 3141 * 36) / 100000;
+}
+void rpm_setup (uint8_t rpe)
+{
+    _RPM_CONST = 6000 * rpe; // 60000 si 4 led
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// REFRESH I/O //
+/////////////////
+uint8_t _t_out_max = 0;
+uint8_t _t_in_max  = 0;
+void output_setup (uint8_t refresh_out)
+{
+    _t_out_max = refresh_out;
+}
+void input_setup (uint8_t refresh_in)
+{
+    _t_in_max = refresh_in;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// GLOBAL //
+////////////
+uint32_t _RPM = 0;
+uint32_t _SPD = 0;
+
+#endif
