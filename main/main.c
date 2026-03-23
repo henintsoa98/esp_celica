@@ -44,8 +44,9 @@
 
 
 // VAR
-#define DMUX_NBR 10
-#define DMUX_PIN DMUX_NBR * 8
+#define DMUX_NBR       10
+#define DMUX_FOR_STRIP 8
+#define DMUX_PIN DMUX_NBR * 8       // 80
 
 #define SEG_PIN 8   // FIXE
 #define SEG_RPM 3
@@ -53,7 +54,7 @@
 
 #define MOTOR_NBR 2 // FIXE
 
-#define STRIP_NBR 64
+#define STRIP_NBR DMUX_FOR_STRIP * 8    // 64
 
 #define T_REF_IN  100   // RPM refresh speed
 
